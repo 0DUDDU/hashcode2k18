@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Header.h"
 
 using namespace std;

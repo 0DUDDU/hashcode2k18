@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Header.h"
 #include <sstream>
 #include <vector>
