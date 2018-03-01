@@ -1,6 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <sstream>
+
+using namespace std;
 
 class SDR {
 public:
@@ -10,26 +13,36 @@ public:
 	int rides;
 	int bonus;
 	int step;
-	std::vector<std::shared_ptr<ride>> rides;
-	std::vector<std::shared_ptr<car>> cars;
+	std::vector<std::shared_ptr<Ride>> ridesList;
+	std::vector<std::shared_ptr<Car>> cars;
+	
+	void setValues(std::string line) {
+		stringstream ss(line);
+		ss >> row >> col >> fleet >> rides >> bonus >> step;
+	}
 };
 
-class ride {
+class Ride {
 public:
-	vector2 start;
-	vector2 finish;
+	Ride(int id,  string line) {
+		stringstream ss(line);
+		_id = id;
+		ss >> start.y >> start.y >> finish.y >> finish.x >> earliest >> latest;
+	}
+	int _id;
+	Vector2 start;
+	Vector2 finish;
 	int earliest;
 	int latest;
 };
 
-class vector2 {
+class Vector2 {
 public:
 	int x;
 	int y;
 };
 
-class car {
+class Car {
 public:
-	vector2 pos;
-	std::shared_ptr<ride> currentRide;
+	std::vector<std::shared_ptr<Ride>> rides;
 };

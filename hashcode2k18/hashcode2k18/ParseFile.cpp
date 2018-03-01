@@ -5,70 +5,47 @@
 #include <sstream>
 #include <vector>
 #include <iterator>
+#include <memory>
+#include "SDR.cpp"
+
+using namespace std;
 
 class ParseFile {
 public:
-	std::ifstream infile;
+	ifstream infile;
+	shared_ptr<SDR> _sdr;
 	
-	ParseFile(std::string filename) {
+	ParseFile(std::string filename, shared_ptr<SDR> sdr) {
 		infile = std::ifstream(filename);
+		_sdr = sdr;
 	}
 
 	void readFile() {
-		std::string line;
-		std::getline(infile, line);
-		auto firstline = split(line, ' ');
-		for (int i = 0; i < firstline.size(); i++) {
-			switch (i) {
-			case 0:
-				break;
-			case 1:
-				break;
-			case 2:
-				break;
-			case 3:
-				break;
-			case 4:
-				break;
-			case 5:
-				break;
-			}
-		}
+		string line;
+		stringstream ss;
+		getline(infile, line);
+		_sdr->setValues(line);
+		int i = 0;
 		while (std::getline(infile, line))
 		{
-			auto splitline = split(line, ' ');
-			for (int i = 0; i < splitline.size(); i++) {
-				switch (i) {
-				case 0:
-					break;
-				case 1:
-					break;
-				case 2:
-					break;
-				case 3:
-					break;
-				case 4:
-					break;
-				case 5:
-					break;
-				}
-			}
+			ss.str(line);
+			_sdr->ridesList.push_back(make_shared<Ride>(line));
 		}
 	}
 private:
 	template<typename Out>
 	void split(const std::string &s, char delim, Out result) {
-	std::stringstream ss(s);
-	std::string item;
+	stringstream ss(s);
+	string item;
 	while (std::getline(ss, item, delim)) {
 		*(result++) = item;
 	}
 }
 
-		std::vector<std::string> split(const std::string &s, char delim) {
-			std::vector<std::string> elems;
-			split(s, delim, std::back_inserter(elems));
-			return elems;
-		}
+vector<std::string> split(const std::string &s, char delim) {
+	std::vector<std::string> elems;
+	split(s, delim, std::back_inserter(elems));
+	return elems;
+}
 };
 
