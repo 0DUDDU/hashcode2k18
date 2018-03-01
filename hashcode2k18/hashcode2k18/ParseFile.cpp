@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <sstream>
 #include <string>
 #include <fstream>
@@ -6,7 +7,7 @@
 #include <vector>
 #include <iterator>
 #include <memory>
-#include "SDR.cpp"
+#include "SDR.hpp"
 
 using namespace std;
 
@@ -25,6 +26,7 @@ public:
 		stringstream ss;
 		getline(infile, line);
 		_sdr->setValues(line);
+		_sdr->cars.insert(_sdr->cars.begin(), _sdr->fleet, make_shared<Car>());
 		int i = 0;
 		while (std::getline(infile, line))
 		{

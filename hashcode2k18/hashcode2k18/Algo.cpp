@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "SDR.cpp"
+#include "SDR.hpp"
 #include <memory>
 #include <fstream> 
 #include <algorithm>
