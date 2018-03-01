@@ -151,6 +151,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Algo.cpp" />
     <ClCompile Include="hashcode2k18.cpp" />
     <ClCompile Include="ParseFile.cpp" />
     <ClCompile Include="SDR.cpp" />
